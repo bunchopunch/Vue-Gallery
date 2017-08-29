@@ -1,10 +1,11 @@
 <template>
   <div>
     <h1>Gallery</h1>
-    <p>{{title}}</p>
-    <div>
-      <h2>{{photos[0].title}}</h2>
-      <img v-bind:src="photos[0].thumbnailUrl" >
+    <h2>Albums</h2>
+    <div v-for="album in albums">
+      <h3 v-text="album.title"></h3>
+      <!-- TODO: Come back and use a computed property for this -->
+      <img v-for="photo in photos" v-if="photo.albumId === album.id" v-bind:src="photo.thumbnailUrl">
     </div>
   </div>
 </template>
@@ -41,6 +42,13 @@
             'title': 'Fake Image 2',
             'url': 'http://placehold.it/600/771796',
             'thumbnailUrl': 'http://placehold.it/150/771796'
+          },
+          {
+            'albumId': 2,
+            'id': 3,
+            'title': 'Fake Image 1',
+            'url': 'http://placehold.it/600/92c952',
+            'thumbnailUrl': 'http://placehold.it/150/92c952'
           }
         ]
       }
