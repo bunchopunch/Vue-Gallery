@@ -6,7 +6,10 @@ Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
   router,
-  render: h => h(App)
+  el: '#app',
+  render: h => h(App),
+  template: `
+    <h1><router-link to='/'>GalleryApp</router-link></h1>
+    <router-view></router-view>`
 })

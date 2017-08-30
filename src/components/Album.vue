@@ -1,18 +1,18 @@
 <template>
   <div>
     <h1>GalleryApp</h1>
-    <h2>Albums</h2>
-    <div v-for="album in enhancedAlbums">
-      <h3 v-text="album.title"></h3>
-      <img v-bind:src="album.thumbnailUrl">
-      <button v-on:click="deleteAlbum">Delete Album</button>
+    {{$route.params.id}}
+    <h2></h2>
+    <div v-for="photo in photos" v-if="photo.albumId === parseInt($route.params.id)">
+      <h3 v-text="photo.title"></h3>
+      <img v-bind:src="photo.thumbnailUrl">
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'Gallery',
+    name: 'Album',
     data () {
       return {
         albums: [
@@ -53,17 +53,16 @@
       }
     },
 
-    methods: {
-      deleteAlbum: function (e) {
-        console.log('Delete?', e.target)
+    methods: {},
+    watch: {
+      '$route' (to, from) {
+
       }
     },
-
     computed: {
-      enhancedAlbums () {
-        return this.albums.map((album) => {
-          album.thumbnailUrl = this.photos.find((photo) => photo.albumId === album.id).thumbnailUrl
-          return album
+      currentAlbum () {
+        return this.albums.find(function (album) {
+          return album.id === parseInt(this.$route.params.id)
         })
       }
     }
