@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>GalleryApp</h1>
     <h2>Albums</h2>
     <div v-for="album in enhancedAlbums">
       <h3 v-text="album.title"></h3>

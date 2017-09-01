@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>GalleryApp</h1>
     {{$route.params.id}}
     <h2></h2>
     <div v-for="photo in photos" v-if="photo.albumId === parseInt($route.params.id)">
