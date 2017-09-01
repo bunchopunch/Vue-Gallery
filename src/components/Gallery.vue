@@ -2,8 +2,8 @@
   <div>
     <h2>Albums</h2>
     <div v-for="album in enhancedAlbums">
-      <h3 v-text="album.title"></h3>
-      <img v-bind:src="album.thumbnailUrl">
+      <h3><router-link :to="{ path: 'Album/' + album.id }">{{album.title}}</router-link></h3>
+      <router-link :to="{ path: 'Album/' + album.id }"><img v-bind:src="album.thumbnailUrl"></router-link>
       <button v-on:click="deleteAlbum">Delete Album</button>
     </div>
   </div>

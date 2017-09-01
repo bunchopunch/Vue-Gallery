@@ -53,11 +53,6 @@
     },
 
     methods: {},
-    watch: {
-      '$route' (to, from) {
-
-      }
-    },
     computed: {
       currentAlbum () {
         return this.albums.find(function (album) {
