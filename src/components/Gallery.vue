@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Albums</h2>
-    <div v-for="album in enhancedAlbums">
+    <div v-for="album in enhancedAlbums" :key="album.id" class="album-summary">
       <h3><router-link :to="{ path: 'Album/' + album.id }">{{album.title}}</router-link></h3>
       <router-link :to="{ path: 'Album/' + album.id }"><img v-bind:src="album.thumbnailUrl"></router-link>
       <button v-on:click="deleteAlbum">Delete Album</button>
@@ -60,6 +60,7 @@
 
     computed: {
       enhancedAlbums () {
+        // TODO: It may make the template bulky, but We could possibly drop use v-for range.
         return this.albums.map((album) => {
           album.thumbnailUrl = this.photos.find((photo) => photo.albumId === album.id).thumbnailUrl
           return album

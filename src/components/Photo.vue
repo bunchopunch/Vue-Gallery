@@ -1,17 +1,12 @@
 <template>
   <div>
-    {{$route.params.id}}
-    <h2></h2>
-    <div v-for="photo in photos" :key="photo.id" v-if="photo.albumId === parseInt($route.params.id)" >
-      <h3 v-text="photo.title"></h3>
-      <router-link :to="{ path: '/Photo/' + photo.id }"><img v-bind:src="photo.thumbnailUrl"></router-link>
-    </div>
+    <h3>{{currentPhoto.title}}!</h3>
+    <img v-bind:src="currentPhoto.url">
   </div>
 </template>
 
 <script>
   export default {
-    name: 'Album',
     data () {
       return {
         albums: [
@@ -54,10 +49,8 @@
 
     methods: {},
     computed: {
-      currentAlbum () {
-        return this.albums.find(function (album) {
-          return album.id === parseInt(this.$route.params.id)
-        })
+      currentPhoto () {
+        return this.photos.find((item) => item.id === parseInt(this.$route.params.id))
       }
     }
   }
