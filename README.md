@@ -1,6 +1,6 @@
-# vue-ui
+# Vue Gallery
 
-> A refresher
+A basic project for tinkering with building a vue-cli app from scratch.
 
 ## Build Setup
 
