@@ -66,8 +66,13 @@
           return album
         })
       }
+    },
+
+    created: function () {
+      this.$store.dispatch('FETCH_ALBUMS')
+      this.$store.dispatch('FETCH_PHOTOS')
     }
-  }
+}
 </script>
 
 <style scoped>
