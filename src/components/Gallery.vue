@@ -69,8 +69,7 @@
     },
 
     created: function () {
-      this.$store.dispatch('FETCH_ALBUMS')
-      this.$store.dispatch('FETCH_PHOTOS')
+      this.$store.dispatch('POPULATE_STORE')
     }
 }
 </script>

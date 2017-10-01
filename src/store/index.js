@@ -11,8 +11,13 @@ export const store = new Vuex.Store({
     photos: []
   },
   mutations: {
-    SET_ALBUMS (state, albums) {
-      state.albums = albums
+    SET_ALBUMS (state, albumsRes) {
+      // TODO: Why is .list needed? Is vuex adding that?
+      state.albums = albumsRes.list.map((album) => {
+        // TODO: Doing the map and find is going to get expensive.
+        album.thumbnailUrl = state.photos.list.find((photo) => photo.albumId === album.id).thumbnailUrl
+        return album
+      })
     },
     SET_PHOTOS (state, photos) {
       state.photos = photos
@@ -33,6 +38,18 @@ export const store = new Vuex.Store({
       .then((response) => {
         commit('SET_PHOTOS', { list: response.data })
       }, (err) => {
+        console.error(err)
+      })
+    },
+
+    POPULATE_STORE: function ({ commit }) {
+      axios.all([
+        axios.get(apiRoot + 'photos'),
+        axios.get(apiRoot + 'albums')])
+      .then(axios.spread((photosRes, albumsRes) => {
+        commit('SET_PHOTOS', { list: photosRes.data })
+        commit('SET_ALBUMS', { list: albumsRes.data })
+      }), (err) => {
         console.error(err)
       })
     }
