@@ -55,9 +55,13 @@ export const store = new Vuex.Store({
     }
   },
   getters: {
-    getAlbums () {},
+    getAlbums (state) {
+      return state.albums
+    },
     getAlbum () {},
-    getPhotos () {},
+    getPhotos (state) {
+      return state.photos
+    },
     getPhoto () {}
   }
 })
