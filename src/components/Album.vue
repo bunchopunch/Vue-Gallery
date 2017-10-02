@@ -1,7 +1,6 @@
 <template>
   <div>
-    {{$route.params.id}}
-    <h2></h2>
+    <h2>{{albums[$route.params.id+1].title}}</h2>
     <div v-for="photo in photos" :key="photo.id" v-if="photo.albumId === parseInt($route.params.id)" >
       <h3 v-text="photo.title"></h3>
       <p>This is a photo from Album {{photo.albumId}}</p>
@@ -14,14 +13,15 @@
   import { mapGetters } from 'vuex'
 
   export default {
-    name: 'Album',
+    name: 'Album View',
+
+    // TODO: Add a way to get the album title
 
     computed: {
       ...mapGetters({
         albums: 'getAlbums',
         photos: 'getPhotos'
       })
-
     }
   }
 </script>

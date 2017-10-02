@@ -9,7 +9,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'Photo',
+  name: 'Photo View',
 
   computed: {
     ...mapGetters({

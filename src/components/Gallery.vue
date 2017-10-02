@@ -13,7 +13,7 @@
   import { mapGetters } from 'vuex'
 
   export default {
-    name: 'Gallery',
+    name: 'Gallery View',
 
     methods: {
       deleteAlbum: function (e) {
