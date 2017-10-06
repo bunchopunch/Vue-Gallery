@@ -4,7 +4,7 @@
     <div v-for="album in albums" :key="album.id" class="album-summary">
       <h3><router-link :to="{ path: 'Album/' + album.id }">{{album.title}}</router-link></h3>
       <router-link :to="{ path: 'Album/' + album.id }"><img v-bind:src="album.thumbnailUrl"></router-link>
-      <button v-on:click="deleteAlbum">Delete Album</button>
+      <button class="btn btn-danger" v-on:click="deleteAlbum">Delete Album</button>
     </div>
   </div>
 </template>

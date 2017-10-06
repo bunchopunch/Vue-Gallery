@@ -3,6 +3,7 @@ var config = require('../config')
 var isProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
+  postcss: [require('postcss-scss')()],
   loaders: utils.cssLoaders({
     sourceMap: isProduction
       ? config.build.productionSourceMap
