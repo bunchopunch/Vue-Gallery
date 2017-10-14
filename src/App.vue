@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+
     <div class="container masterhead">
       <nav class="nav">
         <h1><router-link class="nav-link active" to='/'>GalleryApp</router-link></h1>
