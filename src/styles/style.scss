@@ -3,6 +3,10 @@
 @import './_bootstrap_custom';
 @import '../node_modules/bootstrap/scss/bootstrap';
 
+body {
+  background: #121212;
+}
+
 // Add non bootstrap SCSS here
 #app {
   -webkit-font-smoothing: antialiased;
