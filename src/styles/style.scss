@@ -14,6 +14,10 @@
   max-height: 10em;
 }
 
+.album {
+  img {width: 100px;}
+}
+
 .album-summary {
   img {
     object-fit: cover;
