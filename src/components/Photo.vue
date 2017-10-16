@@ -1,7 +1,14 @@
 <template>
-  <div>
-    <h3>{{currentPhoto.title}}!</h3>
-    <img v-bind:src="currentPhoto.url">
+  <div class="image text-white bg-dark">
+    <div class="my-3 px-2">
+      <h2>Images from {{currentPhoto.title}}</h2>
+    </div>
+    <div class="card text-center bg-dark">
+      <div class="card-body">
+        <img v-bind:src="currentPhoto.url">
+        <p>A photo from Album {{currentPhoto.albumId}}.</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -9,7 +16,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'Photo-View',
+  name: 'Image-View',
 
   computed: {
     ...mapGetters({

@@ -1,7 +1,7 @@
 <template>
   <div class="album">
     <div class="my-3 px-2">
-      <h2>Images from {{albums[$route.params.id+1].title}}</h2>
+      <h2>Images from {{albums[$route.params.id-1].title}}</h2>
     </div>
     <div class="row">
 
