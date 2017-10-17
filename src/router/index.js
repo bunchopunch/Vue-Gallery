@@ -7,6 +7,7 @@ import Photo from '@/components/Photo'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -23,5 +24,8 @@ export default new Router({
       name: 'Photo',
       component: Photo
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })
