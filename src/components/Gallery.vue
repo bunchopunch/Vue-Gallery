@@ -1,5 +1,5 @@
 <template>
-  <div class="gallery text-light">
+  <div class="gallery">
     <div class="my-3 px-2">
       <h2>Newest Albums</h2>
     </div>
@@ -7,7 +7,7 @@
 
       <template v-for="(album, index) in albums">
         <div class="col-lg-3 col-md-4 col-xs-6 mb-4" :key="album.id">
-          <div class="card bg-dark text-light album-summary rounded d-block mb-4 h-100">
+          <div class="card album-summary rounded d-block mb-4 h-100">
             <router-link :to="{ path: 'Album/' + album.id }"><img class="card-img-top" v-bind:src="album.thumbnailUrl" alt="Card image cap" /></router-link>
             <div class="card-body">
               <h3 class="card-title h5"><router-link :to="{ path: 'Album/' + album.id }">{{album.title}}</router-link></h3>

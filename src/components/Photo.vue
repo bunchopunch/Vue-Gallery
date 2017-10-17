@@ -1,9 +1,9 @@
 <template>
-  <div class="image text-white bg-dark">
+  <div class="image widget">
     <div class="my-3 px-2">
-      <h2>Images from {{currentPhoto.title}}</h2>
+      <h2>{{currentPhoto.title}}</h2>
     </div>
-    <div class="card text-center bg-dark">
+    <div class="card text-center">
       <div class="card-body">
         <img v-bind:src="currentPhoto.url">
         <p>A photo from Album {{currentPhoto.albumId}}.</p>

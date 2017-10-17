@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <div class="container bg-dark masterhead">
+    <div class="container widget masterhead">
       <nav class="nav">
         <h1><router-link class="nav-link active" to='/'>GalleryApp</router-link></h1>
         <a class="nav-link" href="#">About</a>

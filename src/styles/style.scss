@@ -3,15 +3,19 @@
 @import './_bootstrap_custom';
 @import '../node_modules/bootstrap/scss/bootstrap';
 
-body {
-  background: #121212;
-}
-
 // Add non bootstrap SCSS here
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  // TODO: Add header margin fix
+}
+
+.masterhead {
+  background-color: theme-color("panel")
+}
+
+h1, h2, h3, h4, h5, h6{
+  letter-spacing: -.07rem; 
+  font-weight: bold;
 }
 
 .card-img-top {

@@ -1,17 +1,90 @@
 // Customization of Bootstrap CSS
 
+//
+// Color system
+//
+
+$white:  #fff !default;
+$gray-100: #121212;
+$gray-200: #343a40;
+$gray-300: #495057;
+$gray-400: #868e96;
+$gray-500: #adb5bd;
+$gray-600: #ced4da;
+$gray-700: #dee2e6;
+$gray-800: #e9ecef;
+$gray-900: #f8f9fa;
+$black:  #000 !default;
+
+$blue:    #007bff !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #dc3545 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #28a745 !default;
+$teal:    #20c997 !default;
+$cyan:    #17a2b8 !default;
+
+$colors: (
+  blue: $blue,
+  indigo: $indigo,
+  purple: $purple,
+  pink: $pink,
+  red: $red,
+  orange: $orange,
+  yellow: $yellow,
+  green: $green,
+  teal: $teal,
+  cyan: $cyan,
+  white: $white,
+  gray: $gray-600,
+  gray-dark: $gray-800
+) !default;
+
 $theme-colors: (
-  primary: #444,
+  primary: #cf3046,
   secondary: $gray-600,
   success: $green,
   info: $cyan,
   warning: $yellow,
   danger: $red,
-  light: $gray-100,
-  dark: $gray-800
+  light: $gray-900,
+  dark: $gray-100,
+  panel: $gray-200
 );
 
 // Set global options
 $enable-shadows:    true;
 $enable-gradients:  true;
 $enable-rounded:    false;
+
+// Body
+//
+// Settings for the `<body>` element.
+
+$body-bg:       theme-color("dark");
+$body-color:    $gray-600;
+
+// Links
+//
+// Style anchor elements.
+
+$link-color:            theme-color("primary");
+$link-hover-color:      lighten($link-color, 15%);
+
+// Cards
+
+$card-inner-border-radius: calc(#{$card-border-radius} - #{$card-border-width}) !default;
+$card-bg:                  theme-color("panel");
+
+// Image thumbnails
+$thumbnail-bg:             lighten(theme-color("panel"), 20%);
+$thumbnail-border-color:   lighten(theme-color("panel"), 20%);
+
+// Media Object
+
+.media {
+  background-color:        theme-color("panel");
+}
