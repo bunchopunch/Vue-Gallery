@@ -15,11 +15,17 @@ export const store = new Vuex.Store({
       state.albums = albumsRes.map((album) => {
         // TODO: Doing the map and find is going to get expensive.
         album.thumbnailUrl = state.photos.find((photo) => photo.albumId === album.id).thumbnailUrl
+        album.desc = `Lorem Ipsum. One of ${album.userId}'s albums.`
+        album.links = {self: `Album/${album.id}`}
         return album
       })
     },
     SET_PHOTOS (state, photos) {
-      state.photos = photos
+      state.photos = photos.map((photo) => {
+        photo.links = {self: `/Photo/${photo.id}`}
+        photo.desc = `A photo from Album ${photo.albumId}.`
+        return photo
+      })
     }
   },
   actions: {

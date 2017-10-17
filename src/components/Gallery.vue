@@ -8,12 +8,11 @@
       <template v-for="(album, index) in albums">
         <div class="col-lg-3 col-md-4 col-xs-6 mb-4" :key="album.id">
           <div class="card album-summary rounded d-block mb-4 h-100">
-            <router-link :to="{ path: 'Album/' + album.id }"><img class="card-img-top" v-bind:src="album.thumbnailUrl" alt="Card image cap" /></router-link>
+            <router-link :to="{ path: album.links.self }"><img class="card-img-top" v-bind:src="album.thumbnailUrl" alt="Card image cap" /></router-link>
             <div class="card-body">
-              <h3 class="card-title h5"><router-link :to="{ path: 'Album/' + album.id }">{{album.title}}</router-link></h3>
+              <h3 class="card-title h5"><router-link :to="{ path: album.links.self }">{{album.title}}</router-link></h3>
               <h4 class="card-subtitle mb-2 h6 text-muted">Album ID Number {{album.id}}</h4>
-              <p class="card-text">One of User {{album.userId}}'s albums.</p>
-              <!-- <router-link :to="{ path: 'Album/' + album.id }"><img class="img-thumbnail"></router-link> -->
+              <p class="card-text">{{album.desc}}</p>
               <button class="btn btn-danger" v-on:click="deleteAlbum">Delete Album</button>
             </div>
           </div>

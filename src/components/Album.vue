@@ -5,13 +5,13 @@
     </div>
     <div class="row">
 
-      <div class="widget col-sm-12 col-md-6 col-lg-4 mb-4" v-for="photo in photos" :key="photo.id" v-if="photo.albumId === parseInt($route.params.id)" >
-        <router-link :to="{ path: '/Photo/' + photo.id }">
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-4" v-for="photo in photos" :key="photo.id" v-if="photo.albumId === parseInt($route.params.id)" >
+        <router-link :to="{ path: photo.links.self }">
           <div class="media p-3 h-100 rounded">
             <img class="img-thumbnail mr-3" v-bind:src="photo.thumbnailUrl">
             <div class="media-body">
               <h3 class="h5">{{photo.title}}</h3>
-              A photo from Album {{photo.albumId}}.
+              {{photo.desc}}
             </div>
           </div>
         </router-link>
