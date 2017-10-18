@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Gallery from '@/components/Gallery'
-import Album from '@/components/Album'
-import Photo from '@/components/Photo'
+import GalleryView from '@/components/GalleryView'
+import AlbumView from '@/components/AlbumView'
+import PhotoView from '@/components/PhotoView'
 
 Vue.use(Router)
 
@@ -11,18 +11,18 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Gallery',
-      component: Gallery
+      name: 'GalleryView',
+      component: GalleryView
     },
     {
       path: '/album/:id',
-      name: 'Album',
-      component: Album
+      name: 'AlbumView',
+      component: AlbumView
     },
     {
       path: '/photo/:id',
-      name: 'Photo',
-      component: Photo
+      name: 'PhotoView',
+      component: PhotoView
     }
   ],
   scrollBehavior (to, from, savedPosition) {

@@ -16,7 +16,6 @@
 <script>
 export default {
   name: 'app',
-
   created: function () {
     this.$store.dispatch('POPULATE_STORE')
   }

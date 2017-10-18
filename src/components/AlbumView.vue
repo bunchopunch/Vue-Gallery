@@ -11,20 +11,16 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import thumbnailSingle from './Thumbnail-List/Thumbnail-Single'
+  import thumbnailSingle from './partials/ThumbnailSingle'
 
   export default {
-    name: 'Album-View',
-
-    // TODO: Add a way to get the album title
-
+    name: 'AlbumView',
     computed: {
       ...mapGetters({
         albums: 'getAlbums',
         photos: 'getPhotos'
       })
     },
-
     components: {
       thumbnailSingle
     }

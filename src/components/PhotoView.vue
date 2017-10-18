@@ -16,7 +16,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'Image-View',
+  name: 'ImageView',
 
   computed: {
     ...mapGetters({
