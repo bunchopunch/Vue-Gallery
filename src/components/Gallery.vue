@@ -28,7 +28,7 @@
     components: {
       cardSingle
     }
-}
+  }
 </script>
 
 <style scoped>

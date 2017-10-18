@@ -4,25 +4,14 @@
       <h2>Images from {{albums[$route.params.id-1].title}}</h2>
     </div>
     <div class="row">
-
-      <div class="col-sm-12 col-md-6 col-lg-4 mb-4" v-for="photo in photos" :key="photo.id" v-if="photo.albumId === parseInt($route.params.id)" >
-        <router-link :to="{ path: photo.links.self }">
-          <div class="media p-3 h-100 rounded">
-            <img class="img-thumbnail mr-3" v-bind:src="photo.thumbnailUrl">
-            <div class="media-body">
-              <h3 class="h5">{{photo.title}}</h3>
-              {{photo.desc}}
-            </div>
-          </div>
-        </router-link>
-      </div>
-
+      <thumbnail-single v-for="photo in photos" :key="photo.id" :photo="photo"></thumbnail-single>
     </div>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
+  import thumbnailSingle from './Thumbnail-List/Thumbnail-Single'
 
   export default {
     name: 'Album-View',
@@ -34,6 +23,10 @@
         albums: 'getAlbums',
         photos: 'getPhotos'
       })
+    },
+
+    components: {
+      thumbnailSingle
     }
   }
 </script>
