@@ -15,7 +15,11 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+
+  created: function () {
+    this.$store.dispatch('POPULATE_STORE')
+  }
 }
 </script>
 

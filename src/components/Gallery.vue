@@ -3,37 +3,20 @@
     <div class="my-3 px-2">
       <h2>Newest Albums</h2>
     </div>
+
     <div class="row text-center text-md-left">
-
-      <template v-for="(album, index) in albums">
-        <div class="col-lg-3 col-md-4 col-xs-6 mb-4" :key="album.id">
-          <div class="card album-summary rounded d-block mb-4 h-100">
-            <router-link :to="{ path: album.links.self }"><img class="card-img-top" v-bind:src="album.thumbnailUrl" alt="Card image cap" /></router-link>
-            <div class="card-body">
-              <h3 class="card-title h5"><router-link :to="{ path: album.links.self }">{{album.title}}</router-link></h3>
-              <h4 class="card-subtitle mb-2 h6 text-muted">Album ID Number {{album.id}}</h4>
-              <p class="card-text">{{album.desc}}</p>
-              <button class="btn btn-danger" v-on:click="deleteAlbum">Delete Album</button>
-            </div>
-          </div>
-        </div>
-      </template>
-
+      <card-single v-for="(album, index) in albums" :key="album.id" :album="album"></card-single>
     </div>
+
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
+  import cardSingle from './Card-List/Card-Single'
 
   export default {
     name: 'Gallery-View',
-
-    methods: {
-      deleteAlbum: function (e) {
-        console.log('Delete?', e.target)
-      }
-    },
 
     computed: {
       ...mapGetters({
@@ -42,8 +25,8 @@
       })
     },
 
-    created: function () {
-      this.$store.dispatch('POPULATE_STORE')
+    components: {
+      cardSingle
     }
 }
 </script>
