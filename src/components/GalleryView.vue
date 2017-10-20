@@ -11,7 +11,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import cardSingle from './partials/CardSingle'
+  import CardSingle from '@/components/partials/CardSingle'
 
   export default {
     name: 'GalleryView',
@@ -22,7 +22,7 @@
       })
     },
     components: {
-      cardSingle
+      CardSingle
     }
   }
 </script>

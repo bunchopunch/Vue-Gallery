@@ -11,7 +11,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import thumbnailSingle from './partials/ThumbnailSingle'
+  import ThumbnailSingle from '@/components/partials/ThumbnailSingle'
 
   export default {
     name: 'AlbumView',
@@ -22,7 +22,7 @@
       })
     },
     components: {
-      thumbnailSingle
+      ThumbnailSingle
     }
   }
 </script>
