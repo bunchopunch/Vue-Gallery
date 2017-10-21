@@ -3,12 +3,18 @@ import Router from 'vue-router'
 import GalleryView from '@/components/GalleryView'
 import AlbumView from '@/components/AlbumView'
 import PhotoView from '@/components/PhotoView'
+import notFoundView from '@/components/notFoundView'
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   routes: [
+    {
+      path: '*',
+      name: 'notFoundView',
+      component: notFoundView
+    },
     {
       path: '/',
       name: 'GalleryView',
