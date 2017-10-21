@@ -21,8 +21,12 @@ export const store = new Vuex.Store({
       })
     },
     SET_PHOTOS (state, photos) {
+      // Set some extra properties, since Placeholder API is pretty basic
       state.photos = photos.map((photo) => {
-        photo.links = {self: `/Photo/${photo.id}`}
+        photo.links = {
+          self: `/Photo/${photo.id}`,
+          file: photo.url
+        }
         photo.desc = `A photo from Album ${photo.albumId}.`
         return photo
       })

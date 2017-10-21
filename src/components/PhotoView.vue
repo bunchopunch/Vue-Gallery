@@ -5,7 +5,7 @@
     </div>
     <div class="card text-center">
       <div class="card-body">
-        <img v-bind:src="currentPhoto.url">
+        <img v-bind:src="currentPhoto.links.file">
         <p>{{currentPhoto.desc}}</p>
       </div>
     </div>

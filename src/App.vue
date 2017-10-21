@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <app-masterhead>TestHead</app-masterhead>
+    <app-masterhead></app-masterhead>
     <div class="container">
-      <router-view>TestFoot</router-view>
+      <router-view></router-view>
     </div>
     <app-footer></app-footer>
   </div>
