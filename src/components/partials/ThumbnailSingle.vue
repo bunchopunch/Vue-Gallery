@@ -4,8 +4,8 @@
       <div class="media p-3 h-100 rounded">
         <img class="img-thumbnail mr-3" v-bind:src="photo.thumbnailUrl">
         <div class="media-body">
-          <h3 class="h5">{{photo.title}}</h3>
-          {{photo.desc}}
+          <h3 class="h5 mt-0">{{photo.title}}</h3>
+          <p class="text-light mb-0">{{photo.desc}}</p>
         </div>
       </div>
     </router-link>
@@ -34,4 +34,7 @@
 </script>
 
 <style scoped>
+a:hover {
+  text-decoration: none;
+}
 </style>
