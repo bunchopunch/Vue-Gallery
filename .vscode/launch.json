@@ -5,9 +5,8 @@
       "type": "chrome",
       "request": "attach",
       "name": "Attach to Remote Chrome",
-      "address": "localhost",
       "port": 9222,
-      "localRoot": "${workspaceRoot}"
+      "webRoot": "${workspaceRoot}"
     }
   ]
  }
