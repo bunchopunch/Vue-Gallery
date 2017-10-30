@@ -17,10 +17,11 @@ export default {
   components: {
     'app-masterhead': AppMasterhead,
     'app-footer': AppFooter
-  },
+  }
+  /* ,
   created: function () {
     this.$store.dispatch('POPULATE_STORE')
-  }
+  } */
 }
 </script>
 

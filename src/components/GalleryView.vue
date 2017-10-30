@@ -23,8 +23,11 @@
     },
     components: {
       CardSingle
+    },
+    created: function () {
+      this.$store.dispatch('FETCH_ALBUMS')
     }
-  }
+}
 </script>
 
 <style scoped>
