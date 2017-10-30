@@ -16,13 +16,9 @@ export const store = new Vuex.Store({
   },
   mutations: {
     SET_ALBUMS (state, albumsPayload) {
-      state.albums = albumsPayload.map((album) => {
-        // TODO: Doing the map and find is going to get expensive.
-        album.thumbnailUrl = state.photos.find((photo) => photo.albumId === album.id).thumbnailUrl
-        album.desc = `Lorem Ipsum. One of ${album.userId}'s albums.`
-        album.links = {self: `Album/${album.id}`}
-        return album
-      })
+      console.log(albumsPayload)
+      state.totals.albums = albumsPayload.total
+      state.albums = albumsPayload.records
     },
     SET_PHOTOS (state, photosPayload) {
       // Set some extra properties, since Placeholder API is pretty basic
@@ -40,28 +36,26 @@ export const store = new Vuex.Store({
     FETCH_ALBUMS: function ({ commit }) {
       axios.get(apiRoot + 'albums?_page=1&limit=16')
       .then((response) => {
-        // TODO: Use async dispatch()?
-        // Augment the response as if we had a nicer API
-        let getFirstImageRequests = []
-        console.log('response', response)
-
-        response.data.forEach(function (element) {
-          getFirstImageRequests.push(axios.get(apiRoot + 'photos?albumId=2&_limit=1'))
+        // Create a AJAX promise for each albums first image and get them all
+        let getFirstImgPromises = []
+        response.data.forEach(function (albumEl) {
+          getFirstImgPromises.push(axios.get(`${apiRoot}photos?albumId=${albumEl.id}&_limit=1`))
         })
-
-        axios.all(getFirstImageRequests)
-          .then((firstImages) => {
-            let augmentedAlbumsData = response.data
-            augmentedAlbumsData.forEach((currentValue, index, array) => {
-              currentValue.links = {}
-              currentValue.links.self = firstImages[index].data[0].url
-              currentValue.links.thumbnail = firstImages[index].data[0].thumbnailUrl
-            })
+        axios.all(getFirstImgPromises)
+          .then((firstImgResponses) => {
+            // Augment the response as if we had a more robust API
             commit('SET_ALBUMS', {
-              records: augmentedAlbumsData,
+              records: response.data.map((currentAlbumEl, index, array) => {
+                currentAlbumEl.desc = `Album ${currentAlbumEl.id}. An ablum by User ${currentAlbumEl.userId}.`
+                currentAlbumEl.links = {}
+                currentAlbumEl.links.self = './album/' + currentAlbumEl.id
+                currentAlbumEl.links.thumbnail = firstImgResponses[index].data[0].thumbnailUrl
+                currentAlbumEl.links.fullSize = firstImgResponses[index].data[0].url
+                return currentAlbumEl
+              }),
               type: 'albums',
-              total: 100,
-              index: 0
+              index: 0,
+              total: 100
             })
           })
       }, (err) => {
