@@ -6,12 +6,14 @@
     <div class="row">
       <card-single v-for="(album, index) in albums" :key="album.id" :album="album"></card-single>
     </div>
-  </div>
+    <widget-pagination></widget-pagination>
+    </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
   import CardSingle from '@/components/partials/CardSingle'
+  import WidgetPagination from '@/components/partials/WidgetPagination'
 
   export default {
     name: 'GalleryView',
@@ -22,7 +24,8 @@
       })
     },
     components: {
-      CardSingle
+      CardSingle,
+      WidgetPagination
     },
     created: function () {
       this.$store.dispatch('FETCH_ALBUMS')

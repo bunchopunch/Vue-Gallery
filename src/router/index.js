@@ -21,6 +21,11 @@ export default new Router({
       component: GalleryView
     },
     {
+      path: '/page/:pageNumber',
+      name: 'GalleryView',
+      component: GalleryView
+    },
+    {
       path: '/album/:id',
       name: 'AlbumView',
       component: AlbumView
