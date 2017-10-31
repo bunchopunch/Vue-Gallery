@@ -35,32 +35,33 @@ export const store = new Vuex.Store({
   actions: {
     FETCH_ALBUMS: function ({ commit }) {
       axios.get(apiRoot + 'albums?_page=1&limit=16')
-      .then((response) => {
-        // Create a AJAX promise for each albums first image and get them all
-        let getFirstImgPromises = []
-        response.data.forEach(function (albumEl) {
-          getFirstImgPromises.push(axios.get(`${apiRoot}photos?albumId=${albumEl.id}&_limit=1`))
-        })
-        axios.all(getFirstImgPromises)
-          .then((firstImgResponses) => {
-            // Augment the response as if we had a more robust API
-            commit('SET_ALBUMS', {
-              records: response.data.map((currentAlbumEl, index, array) => {
-                currentAlbumEl.desc = `Album ${currentAlbumEl.id}. An ablum by User ${currentAlbumEl.userId}.`
-                currentAlbumEl.links = {}
-                currentAlbumEl.links.self = './album/' + currentAlbumEl.id
-                currentAlbumEl.links.thumbnail = firstImgResponses[index].data[0].thumbnailUrl
-                currentAlbumEl.links.fullSize = firstImgResponses[index].data[0].url
-                return currentAlbumEl
-              }),
-              type: 'albums',
-              index: 0,
-              total: 100
-            })
+        .then((albumsRes) => {
+          // For each album, create a promise to get the first image
+          let firstImgsPromises = albumsRes.data.map(function (albumEl) {
+            return axios.get(`${apiRoot}photos?albumId=${albumEl.id}&_limit=1`)
           })
-      }, (err) => {
-        console.error(err)
-      })
+          axios.all(firstImgsPromises)
+            .then((firstImgsRes) => {
+              console.log(firstImgsPromises)
+              // Augment the response as if we had a more robust API
+              commit('SET_ALBUMS', {
+                records: albumsRes.data.map((currentAlbumEl, index, array) => {
+                  currentAlbumEl.desc = `Album ${currentAlbumEl.id}. An ablum by User ${currentAlbumEl.userId}.`
+                  currentAlbumEl.links = {
+                    self: './album/' + currentAlbumEl.id,
+                    thumbnail: firstImgsRes[index].data[0].thumbnailUrl,
+                    fullSize: firstImgsRes[index].data[0].url
+                  }
+                  return currentAlbumEl
+                }),
+                type: 'albums',
+                index: 0,
+                total: 100 // From JSON API docs
+              })
+            })
+        }, (err) => {
+          console.error('There was an issue retrieving the albums.', err)
+        })
     },
     // TODO: Come back to incorporate id and page.
     FETCH_PHOTOS: function ({ commit }) {
