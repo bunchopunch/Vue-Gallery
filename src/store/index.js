@@ -34,7 +34,7 @@ export const store = new Vuex.Store({
   },
   actions: {
     FETCH_ALBUMS: function ({ commit }) {
-      axios.get(apiRoot + 'albums?_page=1&limit=16')
+      axios.get(apiRoot + 'albums?_page=1&_limit=16')
         .then((albumsRes) => {
           // For each album, create a promise to get the first image
           let firstImgsPromises = albumsRes.data.map(function (albumEl) {
