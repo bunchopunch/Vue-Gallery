@@ -22,7 +22,7 @@ export default new Router({
     },
     {
       path: '/page/:pageNumber',
-      name: 'GalleryView',
+      name: 'PagedGalleryView',
       component: GalleryView
     },
     {

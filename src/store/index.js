@@ -16,7 +16,6 @@ export const store = new Vuex.Store({
   },
   mutations: {
     SET_ALBUMS (state, albumsPayload) {
-      console.log(albumsPayload)
       state.totals.albums = albumsPayload.total
       state.albums = albumsPayload.records
     },
@@ -33,8 +32,9 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    FETCH_ALBUMS: function ({ commit }) {
-      axios.get(apiRoot + 'albums?_page=1&_limit=16')
+    FETCH_ALBUMS: function ({ commit }, pageOptions = {pageNumber: 1}) {
+      console.log(pageOptions)
+      axios.get(apiRoot + `albums?_page=${pageOptions.pageNumber}&_limit=16`)
         .then((albumsRes) => {
           // For each album, create a promise to get the first image
           let firstImgsPromises = albumsRes.data.map(function (albumEl) {
@@ -42,7 +42,6 @@ export const store = new Vuex.Store({
           })
           axios.all(firstImgsPromises)
             .then((firstImgsRes) => {
-              console.log(firstImgsPromises)
               // Augment the response as if we had a more robust API
               commit('SET_ALBUMS', {
                 records: albumsRes.data.map((currentAlbumEl, index, array) => {

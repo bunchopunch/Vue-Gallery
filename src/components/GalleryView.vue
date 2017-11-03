@@ -6,7 +6,7 @@
     <div class="row">
       <card-single v-for="(album, index) in albums" :key="album.id" :album="album"></card-single>
     </div>
-    <widget-pagination></widget-pagination>
+    <widget-pagination totalItems="100" perPage="16"></widget-pagination>
     </div>
 </template>
 
@@ -28,7 +28,7 @@
       WidgetPagination
     },
     created: function () {
-      this.$store.dispatch('FETCH_ALBUMS')
+      this.$store.dispatch('FETCH_ALBUMS', { 'pageNumber': this.$route.params.pageNumber })
     }
 }
 </script>
