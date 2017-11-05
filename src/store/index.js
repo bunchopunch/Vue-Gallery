@@ -7,6 +7,7 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
+    loading: false,
     albums: [],
     photos: [],
     totals: {
@@ -29,6 +30,9 @@ export const store = new Vuex.Store({
         photo.desc = `A photo from Album ${photo.albumId}.`
         return photo
       })
+    },
+    SET_LOADING (state, loadingPayload) {
+      state.loading = loadingPayload
     }
   },
   actions: {
@@ -82,9 +86,20 @@ export const store = new Vuex.Store({
       }), (err) => {
         console.error(err)
       })
+    },
+
+    START_LOADING: function ({ commit }) {
+      commit('SET_LOADING', true)
+    },
+
+    END_LOADING: function ({ commit }) {
+      commit('SET_LOADING', false)
     }
   },
   getters: {
+    getLoading (state) {
+      return state.loading
+    },
     getAlbums (state) {
       return state.albums
     },
