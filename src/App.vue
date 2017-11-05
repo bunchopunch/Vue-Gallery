@@ -30,11 +30,6 @@ export default {
     'app-masterhead': AppMasterhead,
     'app-footer': AppFooter
   }
-  /* ,
-  created: function () {
-    this.$store.dispatch('SET_ERROR')
-  }
-  */
 }
 </script>
 

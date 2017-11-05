@@ -39,13 +39,14 @@ export const store = new Vuex.Store({
       state.status.loading = loadingPayload
     },
     SET_ERROR (state, errorPayload) {
+      state.status.loading = false
       state.status.error = true
       state.status.errorText = errorPayload
     }
   },
   actions: {
     FETCH_ALBUMS: function ({ commit }, pageOptions = {pageNumber: 1}) {
-      console.log(pageOptions)
+      commit('SET_LOADING', 'true')
       axios.get(apiRoot + `albums?_page=${pageOptions.pageNumber}&_limit=16`)
         .then((albumsRes) => {
           // For each album, create a promise to get the first image
@@ -69,9 +70,11 @@ export const store = new Vuex.Store({
                 index: 0,
                 total: 100 // From JSON API docs
               })
+              commit('SET_LOADING', false)
             })
         }, (err) => {
           console.error('There was an issue retrieving the albums.', err)
+          commit('SET_ERROR', 'There was an error retrieving the albums.')
         })
     },
     // TODO: Come back to incorporate id and page.

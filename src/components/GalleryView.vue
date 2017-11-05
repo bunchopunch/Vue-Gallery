@@ -6,6 +6,7 @@
     <div class="row">
       <card-single v-for="(album, index) in albums" :key="album.id" :album="album"></card-single>
     </div>
+    <!-- TODO: Use the values from the API -->
     <widget-pagination totalItems="100" perPage="16"></widget-pagination>
     </div>
 </template>
@@ -19,16 +20,25 @@
     name: 'GalleryView',
     computed: {
       ...mapGetters({
+        status: 'getStatus',
         albums: 'getAlbums',
         photos: 'getPhotos'
       })
+    },
+    watch: {
+      '$route': 'fetchAlbums'
+    },
+    methods: {
+      fetchAlbums () {
+        this.$store.dispatch('FETCH_ALBUMS', { 'pageNumber': this.$route.params.pageNumber })
+      }
     },
     components: {
       CardSingle,
       WidgetPagination
     },
     created: function () {
-      this.$store.dispatch('FETCH_ALBUMS', { 'pageNumber': this.$route.params.pageNumber })
+      this.fetchAlbums()
     }
 }
 </script>
