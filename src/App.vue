@@ -5,7 +5,10 @@
       <router-view></router-view>
     </div>
     <app-footer></app-footer>
-    <div class="loading overlay" v-if="loading">
+    <div class="overlay loading" v-if="loading">
+      Loading...
+    </div>
+    <div class="overlay error" v-if="error">
       Loading...
     </div>
   </div>
@@ -37,7 +40,7 @@ export default {
 
 <style lang ="scss">
 @import './styles/style.scss';
-.loading{
+.overlay {
   z-index: 100;
   text-align: center;
   background-color: rgba(18, 18, 18, 0.5);
@@ -46,5 +49,9 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.error {
+  color: #f00;
 }
 </style>

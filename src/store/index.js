@@ -7,7 +7,11 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    loading: false,
+    staus: {
+      loading: false,
+      error: false,
+      errorText: ''
+    },
     albums: [],
     photos: [],
     totals: {
@@ -32,7 +36,11 @@ export const store = new Vuex.Store({
       })
     },
     SET_LOADING (state, loadingPayload) {
-      state.loading = loadingPayload
+      state.status.loading = loadingPayload
+    },
+    SET_ERROR (state, errorPayload) {
+      state.status.error = true
+      state.status.errorText = errorPayload
     }
   },
   actions: {
@@ -94,6 +102,10 @@ export const store = new Vuex.Store({
 
     END_LOADING: function ({ commit }) {
       commit('SET_LOADING', false)
+    },
+
+    SET_ERROR: function ({ commit }, errorOptions = {text: 'A generic Error has occured.'}) {
+      commit('SET_ERROR', errorOptions.text)
     }
   },
   getters: {
