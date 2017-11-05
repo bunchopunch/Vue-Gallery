@@ -5,11 +5,11 @@
       <router-view></router-view>
     </div>
     <app-footer></app-footer>
-    <div class="overlay loading" v-if="loading">
+    <div class="overlay loading" v-if="status.loading">
       Loading...
     </div>
-    <div class="overlay error" v-if="error">
-      Loading...
+    <div class="overlay error" v-if="status.error">
+      {{status.errorText}}
     </div>
   </div>
 </template>
@@ -23,16 +23,16 @@ export default {
   name: 'App',
   computed: {
     ...mapGetters({
-      loading: 'getLoading'
+      status: 'getStatus'
     })
   },
   components: {
     'app-masterhead': AppMasterhead,
     'app-footer': AppFooter
   }
-  /*,
+  /* ,
   created: function () {
-    this.$store.dispatch('START_LOADING')
+    this.$store.dispatch('SET_ERROR')
   }
   */
 }

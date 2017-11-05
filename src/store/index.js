@@ -7,7 +7,7 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    staus: {
+    status: {
       loading: false,
       error: false,
       errorText: ''
@@ -109,8 +109,8 @@ export const store = new Vuex.Store({
     }
   },
   getters: {
-    getLoading (state) {
-      return state.loading
+    getStatus (state) {
+      return state.status
     },
     getAlbums (state) {
       return state.albums
