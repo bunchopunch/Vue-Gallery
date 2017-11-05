@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-dark pg-dark" aria-label="Page navigation example">
+  <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
       <li class="page-item" v-if="previousPage > 0"><router-link class="page-link" :to="`/page/${previousPage}`" append replace>↞ Previous ({{ previousPage }})</router-link></li>
       <li class="page-item" v-for="page in pages" :key="page"><router-link class="page-link" :to="`/page/${page}`" append replace>{{page}}</router-link></li>
@@ -20,13 +20,13 @@
 
     computed: {
       // TODO: Load the new page in to the route view and page numbers when clicking on router links.
-      // TODO: More reliable default page number logic, < 1, 1.5, NaN, etc.
       currentPage: function () {
-        let page = this.$route.params.pageNumber || 1
+        let page = parseInt(this.$route.params.pageNumber) || 1
+        if (page < 1 || typeof (page) !== 'number' || Number.isNaN === false) { page = 1 }
         return parseInt(page)
       },
       previousPage: function () { return this.currentPage - 1 },
-      nextPage: function () { return this.currentPage + 1 },
+      nextPage: function () { return this.currentPage - 1 },
       finalPage: function () { return Math.ceil(this.totalItems / this.perPage) }
     },
 
